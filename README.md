@@ -128,22 +128,3 @@ Documentación detallada disponible con Laravel Swagger o Postman.
 ![Diagrama ERD](D:\Proyectos\sistema-de-ventas\Diagrama.png)
 
 ---
-
-## 🤝 **Contribuciones**
-
-¡Las contribuciones son bienvenidas! Para colaborar:
-
-1. Haz un fork del proyecto.
-2. Crea una rama con tu funcionalidad (`git checkout -b feature/nueva-funcionalidad`).
-3. Envía un Pull Request.
-
----
-
-## 📜 **Licencia**
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-
----
-
-💡 **Desarrollado por [Tu Nombre] con Laravel y amor.**
-
