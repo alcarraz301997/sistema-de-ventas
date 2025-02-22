@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\User;
 
 use App\Models\User;
 
 class UserRepository
 {
-    public function getAll()
+    public function getAll($pagination)
     {
-        return User::all();
+        return User::paginate($pagination->per_page, ['*'], 'page', $pagination->page);;
     }
 
     public function findById(int $id): ?User

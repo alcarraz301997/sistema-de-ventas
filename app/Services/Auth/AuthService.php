@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Auth;
 
 use App\Constans\Error;
 use App\Exceptions\ResponseException;
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\User\UserRepository;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService

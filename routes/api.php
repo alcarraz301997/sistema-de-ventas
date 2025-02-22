@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,14 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function (){
     Route::get('{id}', [UserController::class, 'show']);
     Route::post('', [UserController::class, 'store']);
     Route::put('{id}', [UserController::class, 'update']);
+});
+
+// Productos
+Route::prefix('products')->middleware('auth:sanctum')->group(function (){
+    Route::get('', [ProductController::class, 'index']);
+    Route::get('{id}', [ProductController::class, 'show']);
+    Route::post('', [ProductController::class, 'store']);
+    Route::put('{id}', [ProductController::class, 'update']);
+    Route::patch('{id}', [ProductController::class, 'increaseStock']);
+    Route::delete('{id}', [ProductController::class, 'delete']);
 });
