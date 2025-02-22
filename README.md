@@ -1,66 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema de Ventas - API Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🚀 **Índice**
 
-## About Laravel
+1. [Descripción del Proyecto](#-descripción-del-proyecto)
+2. [Requisitos Previos](#-requisitos-previos)
+3. [Instalación y Configuración](#-instalación-y-configuración)
+4. [Ejecución del Proyecto](#-ejecución-del-proyecto)
+5. [Endpoints Principales](#-endpoints-principales)
+6. [Diseño y Decisiones Técnicas](#-diseño-y-decisiones-técnicas)
+7. [Diagrama ERD (Entidad-Relación)](#-diagrama-erd-entidad-relación)
+8. [Contribuciones](#-contribuciones)
+9. [Licencia](#-licencia)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📄 **Descripción del Proyecto**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Este proyecto es una API RESTful desarrollada con Laravel para la gestión de ventas. Incluye funcionalidades de administración de productos, registro de ventas, generación de reportes en formatos JSON y XLSX, y un sistema de roles y permisos para diferenciar accesos entre administradores y vendedores.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📋 **Requisitos Previos**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Asegúrate de tener instalados los siguientes programas:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP ^8.1
+- Composer
+- MySQL
+- Laravel ^10
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚙️ **Instalación y Configuración**
 
-### Premium Partners
+1. **Clonar el repositorio:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+git clone https://github.com/alcarraz301997/sistema-de-ventas.git
+cd sistema-de-ventas
+```
 
-## Contributing
+2. **Instalar dependencias:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+```
 
-## Code of Conduct
+3. **Configurar el archivo **``**:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+- Configura las credenciales de la base de datos en el archivo `.env`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. **Generar la clave de la aplicación:**
 
-## License
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Ejecutar las migraciones y seeders:**
+
+```bash
+php artisan migrate
+```
+
+6. **Instalar dependencias de Excel para reportes:**
+
+```bash
+composer require maatwebsite/excel
+```
+
+---
+
+## 🚀 **Ejecución del Proyecto**
+
+1. Inicia el servidor de desarrollo:
+
+```bash
+php artisan serve
+```
+
+2. Accede a la API en:
+
+```
+http://127.0.0.1:8000/api
+```
+
+---
+
+## 📡 **Endpoints Principales**
+
+- **Autenticación:** Registro, login y logout.
+- **Productos:** CRUD de productos, incremento de stock.
+- **Ventas:** Registro de ventas y control de stock.
+- **Reportes:** Exportación de ventas en JSON y XLSX.
+- **Usuarios:** Gestión de roles y permisos.
+
+Documentación detallada disponible con Laravel Swagger o Postman.
+
+---
+
+## 🛠️ **Diseño y Decisiones Técnicas**
+
+1. **Arquitectura:**
+
+   - Arquitectura de 3 capas (capas de Controller, Service y Repository).
+   - Uso de Policies para autorización.
+
+2. **Base de Datos:**
+
+   - Relación uno a muchos entre `sales` y `sale_products`.
+   - Relación muchos a muchos entre `users` y `roles`.
+
+3. **Paquetes Clave:**
+
+   - `maatwebsite/excel` para reportes.
+   - `spatie/laravel-permission` para roles y permisos.
+
+---
+
+## 📊 **Diagrama ERD (Entidad-Relación)**
+
+*El siguiente es un diagrama ERD que describe la estructura de la base de datos.*
+
+![Diagrama ERD](D:\Proyectos\sistema-de-ventas\Diagrama.png)
+
+---
+
+## 🤝 **Contribuciones**
+
+¡Las contribuciones son bienvenidas! Para colaborar:
+
+1. Haz un fork del proyecto.
+2. Crea una rama con tu funcionalidad (`git checkout -b feature/nueva-funcionalidad`).
+3. Envía un Pull Request.
+
+---
+
+## 📜 **Licencia**
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+---
+
+💡 **Desarrollado por [Tu Nombre] con Laravel y amor.**
+
