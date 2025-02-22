@@ -2,16 +2,31 @@
 
 namespace App\Http\Middleware;
 
+use App\Constans\Error;
+use App\Exceptions\ResponseException;
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 
 class Authenticate extends Middleware
 {
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
+     * Maneja una solicitud entrante.
      */
-    protected function redirectTo(Request $request): ?string
+    public function handle($request, Closure $next, ...$guards)
     {
-        return $request->expectsJson() ? null : route('login');
+        if ($this->authenticate($request, $guards) === false) {
+            return $this->unauthenticated($request, $guards);
+        }
+
+        return $next($request);
+    }
+
+    /**
+     * Maneja la respuesta para usuarios no autenticados.
+     */
+    protected function unauthenticated($request, array $guards)
+    {
+        return throw new ResponseException(Error::TOKEN_EXPIRED, 'No autenticado. Inicie sesión para continuar.');
     }
 }

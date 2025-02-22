@@ -17,6 +17,7 @@ return new class extends Migration
             'last_name' => '',
             'email' => 'admin@idbi.com',
             'password' => bcrypt('admin'),
+            'role' => 'administrador'
         ]);
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Constans\Error as ConstansError;
+use Error;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -24,7 +26,11 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            if ($e instanceof ResponseException) {
+                throw $e;
+            }
+
+            throw new ErrorException($e->getMessage(), $e);
         });
     }
 }
