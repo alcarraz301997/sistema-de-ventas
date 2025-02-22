@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $query->where('fl_status', true);
     }
+
+    public function saleProducts()
+    {
+        return $this->hasMany(SaleProducts::class, 'product_id');
+    }
 }

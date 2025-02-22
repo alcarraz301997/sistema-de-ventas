@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedInteger('quantity');
             $table->decimal('unit_price', 10, 2);
+            $table->decimal('total_amount', 10, 2);
             $table->boolean('fl_status')->default(true);
             $table->timestamps();
 

@@ -35,6 +35,14 @@ class ProductRepository
         return $product;
     }
 
+    public function decreaseProductStock(Product $product, int $amount)
+    {
+        $product->stock -= $amount;
+        $product->save();
+
+        return $product;
+    }
+
     public function delete(Product $product)
     {
         $product->update(['fl_status' => false]);

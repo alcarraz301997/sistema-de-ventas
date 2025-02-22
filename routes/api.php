@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Sales\SalesController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,4 +39,10 @@ Route::prefix('products')->middleware('auth:sanctum')->group(function (){
     Route::put('{id}', [ProductController::class, 'update']);
     Route::patch('{id}', [ProductController::class, 'increaseStock']);
     Route::delete('{id}', [ProductController::class, 'delete']);
+});
+
+// Ventas
+Route::prefix('sales')->middleware('auth:sanctum')->group(function (){
+    Route::get('report', [SalesController::class, 'report']);
+    Route::post('', [SalesController::class, 'store']);
 });

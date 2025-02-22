@@ -12,14 +12,20 @@ class SaleProducts extends Model
     protected $table = 'sale_products';
 
     protected $fillable = [
-        'code',
-        'customer_name',
-        'customer_id_type',
-        'customer_id_number',
-        'customer_email',
-        'user_id',
-        'total_amount',
-        'sale_date',
+        'sale_id',
+        'product_id',
+        'quantity',
+        'unit_price',
         'fl_status',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('fl_status', true);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }
